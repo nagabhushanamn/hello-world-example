@@ -1,26 +1,25 @@
 pipeline {
     agent any
     stages {
-        stage('Test') {
+        /* "Build" and "Test" stages omitted */
+
+        stage('Deploy - Staging') {
             steps {
-                sh 'mvn package'
+                echo './deploy staging'
+                echo './run-smoke-tests'
+            }
+        }
+
+        stage('Sanity check') {
+            steps {
+                input "Does the staging environment look ok?"
+            }
+        }
+
+        stage('Deploy - Production') {
+            steps {
+                echo './deploy production'
             }
         }
     }
-    post{
-    
-    		always{
-    			archive 'target/**/*.jar'
-    			junit 'target/**/*.xml'	
-    			emailext to: 'nag@example.com',
-	             subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
-	             body: "Something is wrong with ${env.BUILD_URL}"
-	    		}
-    		
-    
-    }
 }
-
-   
-
-

@@ -12,6 +12,7 @@ pipeline {
     post{
     
     		always{
+    			archive 'build/libs/**/*.jar'
     			junit 'target/**/*.xml'	
     		}
     

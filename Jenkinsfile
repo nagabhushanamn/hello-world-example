@@ -1,11 +1,11 @@
 
 pipeline{ 
-	agent any
+	agent { docker 'maven' }
 	stages{ 
 		stage('build'){ 
 			
 			steps{
-				echo 'Build ..'
+				echo 'mvn --version'
 			}
 			
 		}

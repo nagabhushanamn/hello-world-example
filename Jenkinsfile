@@ -5,8 +5,15 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'mvn --version'
+                sh 'mvn test'
             }
         }
+    }
+    post{
+    
+    		always{
+    			junit 'target/**/*.xml	
+    		}
+    
     }
 }

@@ -12,7 +12,7 @@ pipeline {
     		always{
     			archive 'target/**/*.jar'
     			junit 'target/**/*.xml'	
-    			mail to: 'nag@example.com',
+    			emailext to: 'nag@example.com',
 	             subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
 	             body: "Something is wrong with ${env.BUILD_URL}"
 	    		}

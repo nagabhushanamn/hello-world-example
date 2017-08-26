@@ -1,16 +1,14 @@
 
 pipeline{ 
-	agent { docker 'node' }
+	agent any
 	stages{ 
-		stage('build'){ 
+		stage('Test'){ 
 			
 			steps{
-				sh 'mvn --version'
+				sh 'echo "Fail!";exit 1'
 			}
 			
 		}
 	}
+	
 }
-
-
-xs
